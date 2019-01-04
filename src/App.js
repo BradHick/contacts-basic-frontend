@@ -34,6 +34,15 @@ class App extends Component {
       });
   };
 
+  updateContact(contact){
+    return client.put(`${url}/${contact._id}`, contact)
+      .then(res =>{
+        console.log('------------------------------------');
+        console.log('updateContact res ->', res);
+        console.log('------------------------------------');
+      });
+  };
+
   render() {
     return (
       <div className="App">
