@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { NavLink, Route } from 'react-router-dom';
+// import { NavLink, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 // import ContactListPage from './views/contact-list-page';
 // import ContactFormPage from './views/contact-form-page';
