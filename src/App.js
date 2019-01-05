@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
-// import ContactListPage from './views/contact-list-page';
-import ContactFormPage from './views/contact-form-page';
+import ContactListPage from './views/Contact-list-page';
+import ContactFormPage from './views/Contact-form-page';
 import { client } from './client/client';
 import './App.css';
 

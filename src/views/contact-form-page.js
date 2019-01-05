@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 
-import ContactForm from '../components/contact-form';
+import ContactForm from '../components/Contact-form';
 
 
 
