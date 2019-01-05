@@ -41,6 +41,16 @@ class App extends Component {
       });
   };
 
+  fetchContact(_id){
+    return client.get(`${url}/${_id}`)
+      .then(res => {
+        console.log('------------------------------------');
+        console.log('fetchContact res ->', res);
+        console.log('------------------------------------');
+        this.setState({...this.state, contact: res.data.data})
+      });
+  };
+
 
   fetchContacts = () => {
     return client.get(url).then(res => {
@@ -92,6 +102,7 @@ class App extends Component {
                   redirect: this.state.redirect,
                   saveContact: this.saveContact,
                   fetchContacts: this.fetchContacts,
+                  fetchContact: this.fetchContact,
                   deleteContact: this.deleteContact,
                   updateContact: this.updateContact,
                   newContact: this.newContact,
@@ -99,7 +110,7 @@ class App extends Component {
                 }}
               >
                 <ContactContext.Consumer>
-                  { ({contacts, deleteContact, fetchContacts, contact, redirect, cancelForm, saveContact, updateContact, newContact}) => (
+                  { ({ fetchContact, contacts, deleteContact, fetchContacts, contact, redirect, cancelForm, saveContact, updateContact, newContact}) => (
                     <Fragment>
                       <Route 
                         exact path="/"
@@ -137,6 +148,7 @@ class App extends Component {
                             saveContact={saveContact}
                             updateContact={updateContact}
                             newContact={newContact}
+                            fetchContact={fetchContact}
                           />
                         }
                       />
