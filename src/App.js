@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createContext } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import ContactListPage from './views/Contact-list-page';
@@ -8,15 +8,27 @@ import './App.css';
 
 const url = '/contact';
 
+
+const ContactContext = createContext();
+
 class App extends Component {
 
 
   state ={
-    contacts: client.get(url).then(res => res.data ) || [],
+    // contacts: client.get(url).then(res => res.data ) || [],
+    contacts: [],
     contact: {name:{}},
     loading: false,
     errors: {},
     redirect: false
+  };
+
+  cancelForm = () =>{
+    return this.setState({...this.state, redirect: true});
+  };
+
+  newContact = () =>{
+    return this.setState({...this.state, contact: {name:{}}});
   };
 
   saveContact = (contact) =>{
@@ -30,7 +42,7 @@ class App extends Component {
 
 
   fetchContacts = () => {
-    client.get(url).then(res => res.data );
+    return client.get(url).then(res => this.setState({contacts: res.data}));
   }
 
   deleteContact = (_id) => {
@@ -67,8 +79,88 @@ class App extends Component {
           </div>
 
             {/* <Route exact path="/" component={ContactListPage}/> */}
-            <Route path="/contacts/new" component={ContactFormPage}/>
-            <Route path="/contacts/edit/:_id" component={ContactFormPage}/>
+            <Route exact path="/">
+              <ContactContext.Provider 
+                value={{
+                  contacts: this.state.contacts,
+                  contact: this.state.contact,
+                  saveContact: this.saveContact,
+                  fetchContacts: this.fetchContacts,
+                  deleteContact: this.deleteContact,
+                  updateContact: this.updateContact,
+                  newContact: this.newContact,
+                  cancelForm: this.cancelForm
+                }}
+              >
+                <ContactContext.Consumer>
+                  { ({contacts, deleteContact, fetchContacts}) => (
+                    <ContactListPage
+                      contacts={contacts}
+                      deleteContact={deleteContact}
+                      fetchContacts={fetchContacts}
+                    />
+                  )}
+                </ContactContext.Consumer>
+              </ContactContext.Provider>
+            </Route>
+            {/* <Route path="/contacts/new" component={ContactFormPage}/> */}
+            <Route path="/contacts/new">
+              <ContactContext.Provider 
+                value={{
+                  contacts: this.state.contacts,
+                  contact: this.state.contact,
+                  saveContact: this.saveContact,
+                  fetchContacts: this.fetchContacts,
+                  deleteContact: this.deleteContact,
+                  updateContact: this.updateContact,
+                  newContact: this.newContact,
+                  redirect: this.state.redirect,
+                  cancelForm: this.cancelForm
+                }}
+              >
+                <ContactContext.Consumer>
+                  { ({ contact, redirect, cancelForm, saveContact, updateContact, newContact }) => (
+                    <ContactFormPage
+                      contact={contact}
+                      redirect={redirect}
+                      cancelForm={cancelForm}
+                      saveContact={saveContact}
+                      updateContact={updateContact}
+                      newContact={newContact}
+                    />
+                  )}
+                </ContactContext.Consumer>
+              </ContactContext.Provider>
+            </Route>
+            {/* <Route path="/contacts/edit/:_id" component={ContactFormPage}/> */}
+            <Route path="/contacts/edit/:_id">
+              <ContactContext.Provider 
+                value={{
+                  contacts: this.state.contacts,
+                  contact: this.state.contact,
+                  saveContact: this.saveContact,
+                  fetchContacts: this.fetchContacts,
+                  deleteContact: this.deleteContact,
+                  updateContact: this.updateContact,
+                  newContact: this.newContact,
+                  redirect: this.state.redirect,
+                  cancelForm: this.cancelForm
+                }}
+              >
+                <ContactContext.Consumer>
+                  { ({ contact, redirect, cancelForm, saveContact, updateContact, newContact }) => (
+                    <ContactFormPage
+                      contact={contact}
+                      redirect={redirect}
+                      cancelForm={cancelForm}
+                      saveContact={saveContact}
+                      updateContact={updateContact}
+                      newContact={newContact}
+                    />
+                  )}
+                </ContactContext.Consumer>
+              </ContactContext.Provider>
+            </Route>
         </Container>
       </div>
     );

@@ -11,6 +11,7 @@ class ContactListPage extends Component {
   render(){
     return (
       <div>
+        {console.log('list-page this.props ->',this.props)}
         <h1>List of contacts</h1>
         <ContactList 
           contacts={this.props.contacts} 

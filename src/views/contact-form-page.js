@@ -29,7 +29,7 @@ class ContactFormPage extends Component{
           <Redirect to='/' /> :
           <ContactForm 
             contact={this.props.contact} 
-            loading={this.props.contact.loading} 
+            // loading={this.props.contact.loading}
             saveContact={this.props.saveContact}
             updateContact={this.props.updateContact}
             onSubmit={this.submit}
