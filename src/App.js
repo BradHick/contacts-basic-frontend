@@ -1,4 +1,4 @@
-import React, { Component, createContext } from 'react';
+import React, { Component, createContext, Fragment } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import { Container } from 'semantic-ui-react';
 import ContactListPage from './views/Contact-list-page';
@@ -42,7 +42,12 @@ class App extends Component {
 
 
   fetchContacts = () => {
-    return client.get(url).then(res => this.setState({contacts: res.data}));
+    return client.get(url).then(res => {
+      console.log('------------------------------------');
+      console.log('fetchContacts res ->', res);
+      console.log('------------------------------------');
+      return this.setState({contacts: res.data.data})
+    });
   }
 
   deleteContact = (_id) => {
@@ -79,7 +84,6 @@ class App extends Component {
           </div>
 
             {/* <Route exact path="/" component={ContactListPage}/> */}
-            <Route exact path="/">
               <ContactContext.Provider 
                 value={{
                   contacts: this.state.contacts,
@@ -93,18 +97,44 @@ class App extends Component {
                 }}
               >
                 <ContactContext.Consumer>
-                  { ({contacts, deleteContact, fetchContacts}) => (
-                    <ContactListPage
-                      contacts={contacts}
-                      deleteContact={deleteContact}
-                      fetchContacts={fetchContacts}
-                    />
+                  { ({contacts, deleteContact, fetchContacts, contact, redirect, cancelForm, saveContact, updateContact, newContact}) => (
+                    <Fragment>
+                      <Route exact path="/">
+                        <ContactListPage
+                          contacts={contacts}
+                          deleteContact={deleteContact}
+                          fetchContacts={fetchContacts}
+                        />
+                      </Route>
+
+                      <Route path="/contacts/new">
+                        <ContactFormPage
+                          contact={contact}
+                          redirect={redirect}
+                          cancelForm={cancelForm}
+                          saveContact={saveContact}
+                          updateContact={updateContact}
+                          newContact={newContact}
+                        />
+                      </Route>
+                      
+                      <Route path="/contacts/edit/:_id">
+                        <ContactFormPage
+                          contact={contact}
+                          redirect={redirect}
+                          cancelForm={cancelForm}
+                          saveContact={saveContact}
+                          updateContact={updateContact}
+                          newContact={newContact}
+                        />
+                      </Route>
+                    </Fragment>
+
                   )}
                 </ContactContext.Consumer>
               </ContactContext.Provider>
-            </Route>
             {/* <Route path="/contacts/new" component={ContactFormPage}/> */}
-            <Route path="/contacts/new">
+            {/* <Route path="/contacts/new">
               <ContactContext.Provider 
                 value={{
                   contacts: this.state.contacts,
@@ -131,9 +161,9 @@ class App extends Component {
                   )}
                 </ContactContext.Consumer>
               </ContactContext.Provider>
-            </Route>
+            </Route> */}
             {/* <Route path="/contacts/edit/:_id" component={ContactFormPage}/> */}
-            <Route path="/contacts/edit/:_id">
+            {/* <Route path="/contacts/edit/:_id">
               <ContactContext.Provider 
                 value={{
                   contacts: this.state.contacts,
@@ -160,7 +190,7 @@ class App extends Component {
                   )}
                 </ContactContext.Consumer>
               </ContactContext.Provider>
-            </Route>
+            </Route> */}
         </Container>
       </div>
     );
