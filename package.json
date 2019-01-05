@@ -4,8 +4,10 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "browser-history": "^1.0.1",
     "formik": "^1.4.1",
     "lodash": "^4.17.11",
+    "path-to-regexp": "^2.4.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
