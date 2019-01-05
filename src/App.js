@@ -28,7 +28,7 @@ class App extends Component {
   };
 
   newContact = () =>{
-    return this.setState({...this.state, contact: {name:{}}});
+    return this.setState({...this.state, contact: {name:{}}, redirect: false});
   };
 
   saveContact = (contact) =>{
@@ -37,6 +37,7 @@ class App extends Component {
         console.log('------------------------------------');
         console.log('saveContact res ->', res);
         console.log('------------------------------------');
+        this.setState({...this.state, redirect: true})
       });
   };
 
@@ -46,7 +47,7 @@ class App extends Component {
       console.log('------------------------------------');
       console.log('fetchContacts res ->', res);
       console.log('------------------------------------');
-      return this.setState({contacts: res.data.data})
+      return this.setState({...this.state, contacts: res.data.data, redirect: false})
     });
   }
 
@@ -88,6 +89,7 @@ class App extends Component {
                 value={{
                   contacts: this.state.contacts,
                   contact: this.state.contact,
+                  redirect: this.state.redirect,
                   saveContact: this.saveContact,
                   fetchContacts: this.fetchContacts,
                   deleteContact: this.deleteContact,
