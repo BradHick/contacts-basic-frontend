@@ -93,128 +93,68 @@ class App extends Component {
               exact to="/contacts/new">Add Contact
             </NavLink>
           </div>
-
-            {/* <Route exact path="/" component={ContactListPage}/> */}
-              <ContactContext.Provider 
-                value={{
-                  contacts: this.state.contacts,
-                  contact: this.state.contact,
-                  redirect: this.state.redirect,
-                  saveContact: this.saveContact,
-                  fetchContacts: this.fetchContacts,
-                  fetchContact: this.fetchContact,
-                  deleteContact: this.deleteContact,
-                  updateContact: this.updateContact,
-                  newContact: this.newContact,
-                  cancelForm: this.cancelForm
-                }}
-              >
-                <ContactContext.Consumer>
-                  { ({ fetchContact, contacts, deleteContact, fetchContacts, contact, redirect, cancelForm, saveContact, updateContact, newContact}) => (
-                    <Fragment>
-                      <Route 
-                        exact path="/"
-                        component={
-                          () => <ContactListPage
-                            contacts={contacts}
-                            deleteContact={deleteContact}
-                            fetchContacts={fetchContacts}
-                          />
-                        }
-                      />
-
-                      <Route 
-                        path="/contacts/new"
-                        component={
-                          () => <ContactFormPage
-                            contact={contact}
-                            redirect={redirect}
-                            cancelForm={cancelForm}
-                            saveContact={saveContact}
-                            updateContact={updateContact}
-                            newContact={newContact}
-                          />
-                        }
-                      />
-  
-                      
-                      <Route 
-                        path="/contacts/edit/:_id"
-                        component={
-                          () => <ContactFormPage
-                            contact={contact}
-                            redirect={redirect}
-                            cancelForm={cancelForm}
-                            saveContact={saveContact}
-                            updateContact={updateContact}
-                            newContact={newContact}
-                            fetchContact={fetchContact}
-                          />
-                        }
-                      />
-                    </Fragment>
-
-                  )}
-                </ContactContext.Consumer>
-              </ContactContext.Provider>
-            {/* <Route path="/contacts/new" component={ContactFormPage}/> */}
-            {/* <Route path="/contacts/new">
-              <ContactContext.Provider 
-                value={{
-                  contacts: this.state.contacts,
-                  contact: this.state.contact,
-                  saveContact: this.saveContact,
-                  fetchContacts: this.fetchContacts,
-                  deleteContact: this.deleteContact,
-                  updateContact: this.updateContact,
-                  newContact: this.newContact,
-                  redirect: this.state.redirect,
-                  cancelForm: this.cancelForm
-                }}
-              >
-                <ContactContext.Consumer>
-                  { ({ contact, redirect, cancelForm, saveContact, updateContact, newContact }) => (
-                    <ContactFormPage
-                      contact={contact}
-                      redirect={redirect}
-                      cancelForm={cancelForm}
-                      saveContact={saveContact}
-                      updateContact={updateContact}
-                      newContact={newContact}
+            <ContactContext.Provider 
+              value={{
+                contacts: this.state.contacts,
+                contact: this.state.contact,
+                redirect: this.state.redirect,
+                saveContact: this.saveContact,
+                fetchContacts: this.fetchContacts,
+                fetchContact: this.fetchContact,
+                deleteContact: this.deleteContact,
+                updateContact: this.updateContact,
+                newContact: this.newContact,
+                cancelForm: this.cancelForm
+              }}
+            >
+              <ContactContext.Consumer>
+                { ({ fetchContact, contacts, deleteContact, fetchContacts, contact, redirect, cancelForm, saveContact, updateContact, newContact}) => (
+                  <Fragment>
+                    <Route 
+                      exact path="/"
+                      component={
+                        () => <ContactListPage
+                          contacts={contacts}
+                          deleteContact={deleteContact}
+                          fetchContacts={fetchContacts}
+                        />
+                      }
                     />
-                  )}
-                </ContactContext.Consumer>
-              </ContactContext.Provider>
-            </Route> */}
-            {/* <Route path="/contacts/edit/:_id" component={ContactFormPage}/> */}
-            {/* <Route path="/contacts/edit/:_id">
-              <ContactContext.Provider 
-                value={{
-                  contacts: this.state.contacts,
-                  contact: this.state.contact,
-                  saveContact: this.saveContact,
-                  fetchContacts: this.fetchContacts,
-                  deleteContact: this.deleteContact,
-                  updateContact: this.updateContact,
-                  newContact: this.newContact,
-                  redirect: this.state.redirect,
-                  cancelForm: this.cancelForm
-                }}
-              >
-                <ContactContext.Consumer>
-                  { ({ contact, redirect, cancelForm, saveContact, updateContact, newContact }) => (
-                    <ContactFormPage
-                      contact={contact}
-                      redirect={redirect}
-                      cancelForm={cancelForm}
-                      saveContact={saveContact}
-                      updateContact={updateContact}
-                      newContact={newContact}
+
+                    <Route 
+                      path="/contacts/new"
+                      component={
+                        () => <ContactFormPage
+                          contact={contact}
+                          redirect={redirect}
+                          cancelForm={cancelForm}
+                          saveContact={saveContact}
+                          updateContact={updateContact}
+                          newContact={newContact}
+                        />
+                      }
                     />
-                  )}
-                </ContactContext.Consumer>
-              </ContactContext.Provider>
-            </Route> */}
+
+                    
+                    <Route 
+                      path="/contacts/edit/:_id"
+                      component={
+                        () => <ContactFormPage
+                          contact={contact}
+                          redirect={redirect}
+                          cancelForm={cancelForm}
+                          saveContact={saveContact}
+                          updateContact={updateContact}
+                          newContact={newContact}
+                          fetchContact={fetchContact}
+                        />
+                      }
+                    />
+                  </Fragment>
+
+                )}
+              </ContactContext.Consumer>
+            </ContactContext.Provider>
         </Container>
       </div>
     );
