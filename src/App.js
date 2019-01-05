@@ -99,35 +99,45 @@ class App extends Component {
                 <ContactContext.Consumer>
                   { ({contacts, deleteContact, fetchContacts, contact, redirect, cancelForm, saveContact, updateContact, newContact}) => (
                     <Fragment>
-                      <Route exact path="/">
-                        <ContactListPage
-                          contacts={contacts}
-                          deleteContact={deleteContact}
-                          fetchContacts={fetchContacts}
-                        />
-                      </Route>
+                      <Route 
+                        exact path="/"
+                        component={
+                          () => <ContactListPage
+                            contacts={contacts}
+                            deleteContact={deleteContact}
+                            fetchContacts={fetchContacts}
+                          />
+                        }
+                      />
 
-                      <Route path="/contacts/new">
-                        <ContactFormPage
-                          contact={contact}
-                          redirect={redirect}
-                          cancelForm={cancelForm}
-                          saveContact={saveContact}
-                          updateContact={updateContact}
-                          newContact={newContact}
-                        />
-                      </Route>
+                      <Route 
+                        path="/contacts/new"
+                        component={
+                          () => <ContactFormPage
+                            contact={contact}
+                            redirect={redirect}
+                            cancelForm={cancelForm}
+                            saveContact={saveContact}
+                            updateContact={updateContact}
+                            newContact={newContact}
+                          />
+                        }
+                      />
+  
                       
-                      <Route path="/contacts/edit/:_id">
-                        <ContactFormPage
-                          contact={contact}
-                          redirect={redirect}
-                          cancelForm={cancelForm}
-                          saveContact={saveContact}
-                          updateContact={updateContact}
-                          newContact={newContact}
-                        />
-                      </Route>
+                      <Route 
+                        path="/contacts/edit/:_id"
+                        component={
+                          () => <ContactFormPage
+                            contact={contact}
+                            redirect={redirect}
+                            cancelForm={cancelForm}
+                            saveContact={saveContact}
+                            updateContact={updateContact}
+                            newContact={newContact}
+                          />
+                        }
+                      />
                     </Fragment>
 
                   )}
