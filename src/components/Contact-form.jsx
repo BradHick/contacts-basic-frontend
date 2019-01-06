@@ -51,7 +51,7 @@ class ContactForm extends Component {
         render={({ touched, errors, values, handleChange, handleBlur, handleSubmit }) => (
         <Grid centered columns={2}>
         <Grid.Column>
-          <h1 style={{marginTop:"1em"}}>{this.props.contact._id ? 'Edit Contact' : 'Add New Contact'}</h1>
+          <h1>{this.props.contact._id ? 'Edit Contact' : 'Add New Contact'}</h1>
             
           <Form onSubmit={handleSubmit} loading={this.props.loading}>
             <Form.Group widths='equal'>

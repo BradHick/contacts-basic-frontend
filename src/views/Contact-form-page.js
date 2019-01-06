@@ -10,9 +10,6 @@ import ContactForm from '../components/Contact-form';
 
 class ContactFormPage extends Component{
 
-  
-
-
   componentDidMount = () => {
     const { _id } = this.props.match.params;
     if (_id) {

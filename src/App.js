@@ -84,7 +84,7 @@ class App extends Component {
     return (
       <div className="App">
         <Container>
-          <div className='ui two item menu'>
+          <div className='ui vertical fluid menu'>
             <NavLink className="item" 
               activeClassName="active" 
               exact to="/">Contacts List
@@ -94,6 +94,9 @@ class App extends Component {
               exact to="/contacts/new">Add Contact
             </NavLink>
           </div>
+          <div className='twelve wide stretched column'>
+          <div className="ui segment">
+
             <ContactContext.Provider 
               value={{
                 contacts: this.state.contacts,
@@ -155,6 +158,8 @@ class App extends Component {
                 )}
               </ContactContext.Consumer>
             </ContactContext.Provider>
+          </div>
+          </div>
         </Container>
       </div>
     );
