@@ -37,7 +37,7 @@ class App extends Component {
         console.log('------------------------------------');
         console.log('saveContact res ->', res);
         console.log('------------------------------------');
-        this.setState({...this.state, redirect: true})
+        this.setState({...this.state, redirect: true});
       });
   };
 
@@ -71,12 +71,13 @@ class App extends Component {
       });
   };
 
-  updateContact(contact){
+  updateContact = (contact) =>{
     return client.put(`${url}/${contact._id}`, contact)
       .then(res =>{
         console.log('------------------------------------');
         console.log('updateContact res ->', res);
         console.log('------------------------------------');
+        this.setState({...this.state, redirect: true});
       });
   };
 
