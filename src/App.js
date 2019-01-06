@@ -41,7 +41,7 @@ class App extends Component {
       });
   };
 
-  fetchContact(_id){
+  fetchContact = (_id) =>{
     return client.get(`${url}/${_id}`)
       .then(res => {
         console.log('------------------------------------');
