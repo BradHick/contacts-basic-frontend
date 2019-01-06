@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 import ContactList from '../components/Contact-list';
 
@@ -23,4 +24,4 @@ class ContactListPage extends Component {
 };
 
 
-export default ContactListPage;
+export default withRouter(ContactListPage);

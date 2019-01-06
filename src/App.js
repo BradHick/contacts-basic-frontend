@@ -47,7 +47,7 @@ class App extends Component {
         console.log('------------------------------------');
         console.log('fetchContact res ->', res);
         console.log('------------------------------------');
-        this.setState({...this.state, contact: res.data.data})
+        return this.setState({...this.state, contact: res.data, redirect: false});
       });
   };
 
@@ -57,7 +57,7 @@ class App extends Component {
       console.log('------------------------------------');
       console.log('fetchContacts res ->', res);
       console.log('------------------------------------');
-      return this.setState({...this.state, contacts: res.data.data, redirect: false})
+      return this.setState({...this.state, contacts: res.data.data, redirect: false});
     });
   }
 
@@ -67,6 +67,7 @@ class App extends Component {
         console.log('------------------------------------');
         console.log('deleteContact res ->', res);
         console.log('------------------------------------');
+        this.fetchContacts();
       });
   };
 
@@ -112,7 +113,7 @@ class App extends Component {
                   <Fragment>
                     <Route 
                       exact path="/"
-                      component={
+                      render={
                         () => <ContactListPage
                           contacts={contacts}
                           deleteContact={deleteContact}
@@ -123,7 +124,7 @@ class App extends Component {
 
                     <Route 
                       path="/contacts/new"
-                      component={
+                      render={
                         () => <ContactFormPage
                           contact={contact}
                           redirect={redirect}
@@ -134,11 +135,10 @@ class App extends Component {
                         />
                       }
                     />
-
                     
                     <Route 
                       path="/contacts/edit/:_id"
-                      component={
+                      render={
                         () => <ContactFormPage
                           contact={contact}
                           redirect={redirect}

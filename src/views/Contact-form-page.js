@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
+
 
 import ContactForm from '../components/Contact-form';
 
@@ -11,19 +13,20 @@ class ContactFormPage extends Component{
   
 
 
-  // componentDidMount = () => {
-  //   const { _id } = this.props.match.params;
-  //   if (_id) {
-  //     this.props.fetchContact(_id);
-  //   }else{
-  //     this.props.newContact()
-  //   }
-  // };
+  componentDidMount = () => {
+    const { _id } = this.props.match.params;
+    if (_id) {
+      this.props.fetchContact(_id);
+    }else{
+      this.props.newContact()
+    }
+  };
   
 
   render() {
     return (
       <div>
+        {console.log('form-page this.props ->',this.props)}
         {
           this.props.redirect ?
           <Redirect to='/' /> :
@@ -45,4 +48,4 @@ class ContactFormPage extends Component{
 
 
 
-export default ContactFormPage;
+export default withRouter(ContactFormPage);
