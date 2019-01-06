@@ -5,6 +5,9 @@ import ContactCard from './Contact-card';
 export default function ContactList({contacts, deleteContact}){
 
   const cards = () => {
+    if (contacts.length <= 0){
+      return <h3>You don`t have any contact saved yet, please click on "Add Contact" to save a contact</h3>
+    }
     return contacts.map(contact => {
       return (
         <ContactCard key={contact._id} 

@@ -15,7 +15,6 @@ class App extends Component {
 
 
   state ={
-    // contacts: client.get(url).then(res => res.data ) || [],
     contacts: [],
     contact: {name:{}},
     loading: false,
