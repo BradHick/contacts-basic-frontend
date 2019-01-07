@@ -84,7 +84,7 @@ class App extends Component {
     return (
       <div className="App">
         <Container>
-          <div className='ui vertical fluid menu'>
+          <div className='ui pointing secondary menu'>
             <NavLink className="item" 
               activeClassName="active" 
               exact to="/">Contacts List
@@ -94,6 +94,7 @@ class App extends Component {
               exact to="/contacts/new">Add Contact
             </NavLink>
           </div>
+          
           <div className='twelve wide stretched column'>
           <div className="ui segment">
 
@@ -160,6 +161,7 @@ class App extends Component {
             </ContactContext.Provider>
           </div>
           </div>
+          
         </Container>
       </div>
     );
