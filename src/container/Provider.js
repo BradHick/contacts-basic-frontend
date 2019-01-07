@@ -4,8 +4,6 @@ import { client } from '../client/client';
 const DEFAULT_STATE = {
   contacts: [],
   contact: {name:{}},
-  loading: false,
-  errors: {},
   redirect: false
 };
 
@@ -29,6 +27,11 @@ export default class Provider extends React.Component {
     return client.post(url, contact)
       .then(res =>{
         this.setState({...this.state, redirect: true});
+      })
+      .catch( err => {
+        console.log('====================================');
+        console.log('Something went wrong on saveContact ->', err);
+        console.log('====================================');
       });
   };
 
@@ -36,6 +39,11 @@ export default class Provider extends React.Component {
     return client.get(`${url}/${_id}`)
       .then(res => {
         return this.setState({...this.state, contact: res.data, redirect: false});
+      })
+      .catch( err => {
+        console.log('====================================');
+        console.log('Something went wrong on fetchContact ->', err);
+        console.log('====================================');
       });
   };
 
@@ -43,6 +51,11 @@ export default class Provider extends React.Component {
   fetchContacts = () => {
     return client.get(url).then(res => {
       return this.setState({...this.state, contacts: res.data.data, redirect: false});
+    })
+    .catch( err => {
+      console.log('====================================');
+      console.log('Something went wrong on fetchContacts ->', err);
+      console.log('====================================');
     });
   }
 
@@ -50,6 +63,11 @@ export default class Provider extends React.Component {
     return client.delete(`${url}/${_id}`)
       .then(res => {
         this.fetchContacts();
+      })
+      .catch( err => {
+        console.log('====================================');
+        console.log('Something went wrong on deleteContact ->', err);
+        console.log('====================================');
       });
   };
 
@@ -57,6 +75,11 @@ export default class Provider extends React.Component {
     return client.put(`${url}/${contact._id}`, contact)
       .then(res =>{
         this.setState({...this.state, redirect: true});
+      })
+      .catch( err => {
+        console.log('====================================');
+        console.log('Something went wrong on updateContact ->', err);
+        console.log('====================================');
       });
   };
 
