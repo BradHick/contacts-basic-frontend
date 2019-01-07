@@ -23,7 +23,6 @@ class ContactFormPage extends Component{
   render() {
     return (
       <div>
-        {console.log('form-page this.props ->',this.props)}
         {
           this.props.redirect ?
           <Redirect to='/' /> :

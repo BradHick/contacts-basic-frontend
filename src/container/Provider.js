@@ -28,9 +28,6 @@ export default class Provider extends React.Component {
   saveContact = (contact) =>{
     return client.post(url, contact)
       .then(res =>{
-        console.log('------------------------------------');
-        console.log('saveContact res ->', res);
-        console.log('------------------------------------');
         this.setState({...this.state, redirect: true});
       });
   };
@@ -38,9 +35,6 @@ export default class Provider extends React.Component {
   fetchContact = (_id) =>{
     return client.get(`${url}/${_id}`)
       .then(res => {
-        console.log('------------------------------------');
-        console.log('fetchContact res ->', res);
-        console.log('------------------------------------');
         return this.setState({...this.state, contact: res.data, redirect: false});
       });
   };
@@ -48,9 +42,6 @@ export default class Provider extends React.Component {
 
   fetchContacts = () => {
     return client.get(url).then(res => {
-      console.log('------------------------------------');
-      console.log('fetchContacts res ->', res);
-      console.log('------------------------------------');
       return this.setState({...this.state, contacts: res.data.data, redirect: false});
     });
   }
@@ -58,9 +49,6 @@ export default class Provider extends React.Component {
   deleteContact = (_id) => {
     return client.delete(`${url}/${_id}`)
       .then(res => {
-        console.log('------------------------------------');
-        console.log('deleteContact res ->', res);
-        console.log('------------------------------------');
         this.fetchContacts();
       });
   };
@@ -68,9 +56,6 @@ export default class Provider extends React.Component {
   updateContact = (contact) =>{
     return client.put(`${url}/${contact._id}`, contact)
       .then(res =>{
-        console.log('------------------------------------');
-        console.log('updateContact res ->', res);
-        console.log('------------------------------------');
         this.setState({...this.state, redirect: true});
       });
   };

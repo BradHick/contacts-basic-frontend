@@ -18,7 +18,6 @@ export default function ContactList({contacts, deleteContact}){
   };
   return (
     <Card.Group>
-      {console.log('contacts -> ', contacts)}
       { cards() }
     </Card.Group>
   );
